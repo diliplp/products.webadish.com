@@ -91,22 +91,15 @@ img {
   height: auto;
   max-width: 42vw;
   object-fit: contain;
-  filter: drop-shadow(0 12px 24px rgba(8, 17, 28, 0.22));
+  filter: brightness(0) invert(1) drop-shadow(0 12px 24px rgba(8, 17, 28, 0.18));
 }
 
-.brand-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.05;
-}
-
-.brand-text strong {
-  font-size: 1rem;
-}
-
-.brand-text span:last-child {
+.brand-label {
   color: var(--muted);
   font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .brand.footer-brand .brand-mark {
@@ -119,11 +112,11 @@ img {
   }
 
   .brand-mark {
-    width: 136px;
+    width: 132px;
   }
 
   .brand.footer-brand .brand-mark {
-    width: 124px;
+    width: 118px;
   }
 }
 
