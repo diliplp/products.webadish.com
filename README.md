@@ -1,6 +1,6 @@
-# WebAdish Plugins Site
+# WebAdish Products Site
 
-This folder is a lightweight static site intended for `plugins.webadish.com`.
+This folder is a lightweight static site intended for `products.webadish.com`.
 
 ## Current Structure
 
