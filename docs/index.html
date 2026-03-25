@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AutoSheets Docs | WebAdish Plugins</title>
-    <meta name="description" content="Documentation home for WebAdish AutoSheets for Google Sheets, covering installation, setup, upgrades, and troubleshooting." />
+    <title>AutoSheets Documentation | WebAdish Plugins</title>
+    <meta name="description" content="Complete setup and troubleshooting guide for WebAdish AutoSheets for Google Sheets, including installation, Apps Script setup, testing, upgrades, and FAQ." />
     <link rel="stylesheet" href="../assets/styles.css" />
     <script defer src="../assets/site.js"></script>
   </head>
@@ -28,36 +28,248 @@
         </div>
       </header>
 
-      <main>
-        <section class="hero hero-simple">
-          <div class="container narrow">
+      <main class="section">
+        <div class="container doc-shell">
+          <div class="doc-intro">
             <span class="eyebrow">Documentation</span>
-            <h1>AutoSheets docs home, ready for launch.</h1>
-            <p class="lead">Use this as the documentation structure for AutoSheets now, then expand it into a shared docs system as more plugins launch.</p>
+            <h1>WebAdish AutoSheets Documentation</h1>
+            <p class="lead">Complete setup and troubleshooting guide for connecting WordPress forms to Google Sheets with the free and Pro versions of AutoSheets.</p>
           </div>
-        </section>
 
-        <section class="section">
-          <div class="container three-grid">
-            <article class="panel">
-              <h3>Getting Started</h3>
-              <p>Installation, Google account connection, spreadsheet setup, and first-use sync verification for new AutoSheets users.</p>
-            </article>
-            <article class="panel">
-              <h3>Free to Pro Upgrade</h3>
-              <p>License activation, Pro unlock flow, and guidance on moving from Contact Form 7 free usage into the full Pro feature set.</p>
-            </article>
-            <article class="panel">
-              <h3>Troubleshooting</h3>
-              <p>Support-ready content for Google auth issues, failed syncs, form detection, plugin conflicts, and compatibility notes.</p>
-            </article>
+          <div class="doc-grid">
+            <aside class="doc-nav">
+              <h2>Contents</h2>
+              <a href="#installation">Installation</a>
+              <a href="#google-account">Connect Google Account</a>
+              <a href="#test-connection">Test Your Connection</a>
+              <a href="#how-it-works">How It Works</a>
+              <a href="#upgrade">Upgrade to Pro</a>
+              <a href="#troubleshooting">Troubleshooting</a>
+              <a href="#faq">FAQ</a>
+              <a href="#support-info">Need Help?</a>
+            </aside>
+
+            <div class="doc-content">
+              <section class="doc-section" id="installation">
+                <h2>1. Installation</h2>
+                <h3>Via WordPress.org</h3>
+                <ol>
+                  <li>Log into your WordPress admin.</li>
+                  <li>Go to <strong>Plugins → Add New</strong>.</li>
+                  <li>Search for <strong>WebAdish AutoSheets</strong>.</li>
+                  <li>Click <strong>Install Now</strong>, then <strong>Activate</strong>.</li>
+                </ol>
+                <h3>Via ZIP upload</h3>
+                <ol>
+                  <li>Download the plugin ZIP file.</li>
+                  <li>Go to <strong>Plugins → Add New → Upload Plugin</strong>.</li>
+                  <li>Select the ZIP file and install it.</li>
+                  <li>Activate the plugin.</li>
+                </ol>
+                <div class="callout"><strong>After activation:</strong> you should see <strong>WebAdish AutoSheets</strong> in the WordPress admin sidebar.</div>
+              </section>
+
+              <section class="doc-section" id="google-account">
+                <h2>2. Connect Google Account</h2>
+                <h3>Create your Google Sheet</h3>
+                <ol>
+                  <li>Go to <strong>sheets.google.com</strong>.</li>
+                  <li>Create a blank spreadsheet.</li>
+                  <li>Name it something useful, such as <strong>Contact Form Submissions</strong>.</li>
+                </ol>
+                <h3>Add Google Apps Script</h3>
+                <ol>
+                  <li>In Google Sheets, open <strong>Extensions → Apps Script</strong>.</li>
+                  <li>Delete any default code.</li>
+                  <li>Paste the script below exactly as provided.</li>
+                </ol>
+                <div class="code-block"><pre>function doPost(e) {
+  try {
+    if (!e || !e.postData || !e.postData.contents) {
+      throw new Error('No POST data received');
+    }
+
+    var data = JSON.parse(e.postData.contents);
+
+    if (!data.fields) {
+      throw new Error('Missing fields');
+    }
+
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var formTitle = data.form_title || 'Unknown Form';
+    var sheetName = formTitle.replace(/[\\\/\?\*\[\]:]/g, '_').substring(0, 100);
+    var sheet = ss.getSheetByName(sheetName);
+
+    if (!sheet) {
+      sheet = ss.insertSheet(sheetName);
+      var headers = ['Timestamp', 'Form ID', 'Entry ID'];
+
+      for (var fieldId in data.fields) {
+        var field = data.fields[fieldId];
+        var fieldName = field.name || 'Field ' + fieldId;
+        headers.push(fieldName);
+      }
+
+      sheet.appendRow(headers);
+      sheet.getRange(1, 1, 1, headers.length)
+           .setFontWeight('bold')
+           .setBackground('#4285f4')
+           .setFontColor('#ffffff');
+      sheet.setFrozenRows(1);
+    }
+
+    var headerRange = sheet.getRange(1, 1, 1, sheet.getLastColumn());
+    var headers = headerRange.getValues()[0];
+    var row = [];
+
+    for (var i = 0; i &lt; headers.length; i++) {
+      var header = headers[i];
+
+      if (header === 'Timestamp') {
+        row.push(new Date());
+      } else if (header === 'Form ID') {
+        row.push(data.form_id || '');
+      } else if (header === 'Entry ID') {
+        row.push(data.entry_id || '');
+      } else {
+        var value = '';
+        for (var fieldId in data.fields) {
+          var field = data.fields[fieldId];
+          if (field.name === header) {
+            value = field.value || '';
+            break;
+          }
+        }
+        row.push(value);
+      }
+    }
+
+    sheet.appendRow(row);
+
+    return ContentService.createTextOutput(JSON.stringify({
+      success: true,
+      message: 'Data saved'
+    })).setMimeType(ContentService.MimeType.JSON);
+
+  } catch(error) {
+    Logger.log('ERROR: ' + error.toString());
+    return ContentService.createTextOutput(JSON.stringify({
+      success: false,
+      error: error.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function doGet(e) {
+  return ContentService.createTextOutput('WebAdish AutoSheets webhook is active');
+}</pre></div>
+                <h3>Deploy as Web App</h3>
+                <ol>
+                  <li>Click <strong>Deploy → New deployment</strong>.</li>
+                  <li>Choose <strong>Web app</strong>.</li>
+                  <li>Set <strong>Execute as: Me</strong>.</li>
+                  <li>Set <strong>Who has access: Anyone</strong>.</li>
+                  <li>Deploy and authorize access.</li>
+                  <li>Copy the web app URL. It must end with <strong>/exec</strong>.</li>
+                </ol>
+                <h3>Connect WordPress</h3>
+                <ol>
+                  <li>Go to <strong>WebAdish AutoSheets → Settings</strong> in WordPress.</li>
+                  <li>Paste the web app URL.</li>
+                  <li>Save settings and run <strong>Test Connection</strong>.</li>
+                </ol>
+              </section>
+
+              <section class="doc-section" id="test-connection">
+                <h2>3. Test Your Connection</h2>
+                <ol>
+                  <li>Submit a real form from the front end.</li>
+                  <li>Check the target Google Sheet for a new row.</li>
+                  <li>Open <strong>WebAdish AutoSheets → Activity Log</strong> to confirm the result.</li>
+                </ol>
+                <div class="callout"><strong>Expected behavior:</strong> AutoSheets creates a tab named after the form, adds field headers automatically, and logs success or failure in the Activity Log.</div>
+              </section>
+
+              <section class="doc-section" id="how-it-works">
+                <h2>4. How It Works</h2>
+                <p>The sync flow is straightforward: user submits a form, AutoSheets intercepts the submission, sends it to Google Apps Script, and the sheet updates automatically within a second or two.</p>
+                <h3>Supported forms</h3>
+                <p><strong>Free:</strong> Contact Form 7</p>
+                <p><strong>Pro:</strong> Contact Form 7, WPForms, Gravity Forms, Formidable Forms, Ninja Forms, Elementor Forms, and Fluent Forms.</p>
+                <div class="callout"><strong>Privacy model:</strong> data goes directly from your WordPress site to your own Google account. WebAdish does not see or store form submission data.</div>
+              </section>
+
+              <section class="doc-section" id="upgrade">
+                <h2>5. Upgrade to Pro</h2>
+                <p>Upgrade when you need more form builders, multiple spreadsheets, custom field mapping, conditional sync, advanced filtering, and 24-hour priority support.</p>
+                <ol>
+                  <li>Choose your plan on the pricing page.</li>
+                  <li>Complete payment.</li>
+                  <li>Receive your license key by email.</li>
+                  <li>Go to <strong>WebAdish → Settings → Upgrade to Pro</strong>.</li>
+                  <li>Enter the license key and activate.</li>
+                </ol>
+                <div class="callout"><strong>All Pro plans include:</strong> lifetime updates, priority support, all premium integrations, and a 30-day money-back guarantee.</div>
+              </section>
+
+              <section class="doc-section" id="troubleshooting">
+                <h2>6. Troubleshooting</h2>
+                <h3>Connection test fails</h3>
+                <ul>
+                  <li>Make sure the Apps Script was deployed as a web app, not just saved.</li>
+                  <li>Use the <strong>/exec</strong> URL, not the <strong>/dev</strong> URL.</li>
+                  <li>Confirm <strong>Who has access</strong> is set to <strong>Anyone</strong>.</li>
+                  <li>If you changed settings, deploy a new version and update the URL in WordPress.</li>
+                </ul>
+                <h3>Forms submit but no data appears in Sheets</h3>
+                <ul>
+                  <li>Check the Activity Log first.</li>
+                  <li>Confirm the form plugin is detected in settings.</li>
+                  <li>Check whether the sheet tab was created under an unexpected form title.</li>
+                  <li>Review Google Apps Script execution history for failures.</li>
+                </ul>
+                <h3>Blank entries in Sheets</h3>
+                <p>Update to the latest plugin version, verify the Apps Script code is correct, and contact support if the Activity Log shows success but the rows are empty.</p>
+                <h3>401 or 403 Apps Script errors</h3>
+                <p>This often means the sheet owner changed or the deployment lost authorization. Re-deploy the script as the current owner and update the URL in WordPress.</p>
+                <h3>Form plugin not detected</h3>
+                <p>The free version supports Contact Form 7 only. Other form builders require Pro. If a Pro-supported plugin is active but not detected, deactivate and reactivate AutoSheets, then check again.</p>
+                <h3>Google Apps Script rate limits</h3>
+                <p>Google Apps Script imposes daily execution limits. If you hit rate limits, check for test loops, distribute load if needed, or reach out for enterprise guidance.</p>
+              </section>
+
+              <section class="doc-section" id="faq">
+                <h2>7. FAQ</h2>
+                <h3>Is my data secure?</h3>
+                <p>Yes. Data goes directly from your WordPress site to your own Google account via HTTPS. WebAdish does not process or store submission data.</p>
+                <h3>Does this slow forms down?</h3>
+                <p>No. AutoSheets uses non-blocking sync, so users still see the form success message immediately.</p>
+                <h3>How many submissions can I sync?</h3>
+                <p>Unlimited. Neither the free nor the Pro version imposes submission limits.</p>
+                <h3>Can I use multiple Google Sheets?</h3>
+                <p>Free supports one sheet with multiple tabs. Pro supports multiple spreadsheets.</p>
+                <h3>Can I sync old entries?</h3>
+                <p>No. AutoSheets syncs new submissions going forward. Old data needs to be exported manually from the form plugin.</p>
+                <h3>What is the difference between Pro plans?</h3>
+                <p>The features are the same. The difference is the number of sites you can activate.</p>
+                <h3>Do I need annual renewal?</h3>
+                <p>No. AutoSheets Pro uses one-time pricing with lifetime use.</p>
+              </section>
+
+              <section class="doc-section" id="support-info">
+                <h2>Need Help?</h2>
+                <p><strong>Free version support:</strong> WordPress.org support forums with a 48-hour response target.</p>
+                <p><strong>Pro support:</strong> <a href="mailto:support@webadish.com">support@webadish.com</a> with a 24-hour response target.</p>
+                <p>When contacting support, include your WordPress version, PHP version, form plugin name and version, the Activity Log error, screenshots, and any steps already tried.</p>
+              </section>
+            </div>
           </div>
-        </section>
+        </div>
       </main>
 
       <footer class="site-footer">
         <div class="container footer-grid">
-          <div><p class="footer-copy">Shared documentation system for the WebAdish plugin portfolio.</p></div>
+          <div><p class="footer-copy">Complete setup and troubleshooting guide for WebAdish AutoSheets.</p></div>
           <div class="footer-links">
             <a href="../pricing/">Pricing</a>
             <a href="../support/">Support</a>
