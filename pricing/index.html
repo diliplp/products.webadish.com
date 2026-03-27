@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AutoSheets Pricing | WebAdish Products</title>
     <meta name="description" content="One-time pricing for WebAdish AutoSheets for Google Sheets. Free Contact Form 7 version, Pro single-site, 5-site, and unlimited licenses." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles.css" />
     <script defer src="../assets/site.js"></script>
   </head>
@@ -16,74 +19,296 @@
             <img class="brand-mark" src="../assets/webadish-logo.webp" alt="WebAdish" />
             <span class="brand-label">Products</span>
           </a>
-          <button class="nav-toggle" type="button" aria-label="Toggle navigation" data-nav-toggle><span></span><span></span></button>
+          <button class="nav-toggle" type="button" aria-label="Toggle navigation" data-nav-toggle>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
           <nav class="site-nav" data-nav>
             <a href="../" data-nav-link>Home</a>
             <a href="../#plugins" data-nav-link>Plugins</a>
-            <a href="../pricing/" data-nav-link>Pricing</a>
+            <a href="../pricing/" data-nav-link class="is-active">Pricing</a>
             <a href="../docs/" data-nav-link>Docs</a>
             <a href="../support/" data-nav-link>Support</a>
-            <a href="../products/autosheets-google-sheets/" data-nav-link>AutoSheets</a>
-            <a href="https://webadish.com" class="button ghost">Main Site</a>
+            <a href="../products/autosheets-google-sheets/" class="button primary">AutoSheets</a>
           </nav>
         </div>
       </header>
 
       <main>
+        <!-- Hero Section -->
         <section class="hero hero-simple">
-          <div class="container narrow">
-            <span class="eyebrow">Pricing</span>
-            <h1>Simple, one-time pricing for WebAdish AutoSheets for Google Sheets.</h1>
-            <p class="lead">No monthly fees. Buy once, keep using it, and choose the license tier that matches your site or agency footprint.</p>
+          <div class="container">
+            <div class="section-header centered">
+              <span class="eyebrow">Pricing</span>
+              <h1 class="section-title">Simple, one-time pricing</h1>
+              <p class="section-description">
+                No monthly fees. Buy once, keep using it, and choose the license tier that matches your site or agency footprint.
+              </p>
+            </div>
           </div>
         </section>
 
+        <!-- Pricing Cards -->
         <section class="section">
           <div class="container">
-            <div class="card-grid">
-              <article class="product-card">
-                <p class="card-tag">Free</p>
-                <h3>Free Plugin</h3>
-                <p class="price-pill">₹0 forever</p>
-                <ul class="mini-list">
-                  <li>Contact Form 7 integration</li>
-                  <li>Unlimited submissions</li>
-                  <li>One Google Sheet</li>
+            <div class="pricing-grid">
+              <article class="pricing-card">
+                <div class="pricing-header">
+                  <span class="pricing-tier">Free</span>
+                  <div class="pricing-price">
+                    <span class="price-amount">$0</span>
+                    <span class="price-period">forever</span>
+                  </div>
+                  <p class="pricing-description">Perfect for Contact Form 7 users getting started with form sync.</p>
+                </div>
+                <ul class="pricing-features">
+                  <li>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Contact Form 7 integration
+                  </li>
+                  <li>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Unlimited submissions
+                  </li>
+                  <li>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    One Google Sheet
+                  </li>
+                  <li>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    WordPress.org support
+                  </li>
                 </ul>
+                <a class="button secondary large" href="https://wordpress.org/plugins/webadish-auto-sheets/" target="_blank" rel="noopener noreferrer">
+                  Download Free
+                </a>
               </article>
-              <article class="product-card featured">
-                <p class="card-tag">Single Site</p>
-                <h3>AutoSheets Pro</h3>
-                <p class="price-pill">₹2,499 one-time</p>
-                <ul class="mini-list">
-                  <li>All Pro integrations</li>
-                  <li>All Pro features</li>
-                  <li>Lifetime updates</li>
+
+              <article class="pricing-card featured">
+                <div class="pricing-badge">Most Popular</div>
+                <div class="pricing-header">
+                  <span class="pricing-tier">Single Site</span>
+                  <div class="pricing-price">
+                    <span class="price-amount">$29</span>
+                    <span class="price-period">one-time</span>
+                  </div>
+                  <p class="pricing-description">Full Pro features for a single WordPress website.</p>
+                </div>
+                <ul class="pricing-features">
+                  <li>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    All Pro integrations
+                  </li>
+                  <li>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    All Pro features
+                  </li>
+                  <li>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Lifetime updates
+                  </li>
+                  <li>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    24-hour priority support
+                  </li>
                 </ul>
+                <a class="button primary large" href="mailto:sales@webadish.com?subject=AutoSheets Pro - Single Site">
+                  Get Started
+                </a>
               </article>
-              <article class="product-card">
-                <p class="card-tag">Agency</p>
-                <h3>5 Sites / Unlimited</h3>
-                <p class="price-pill">₹4,999 / ₹9,999</p>
-                <ul class="mini-list">
-                  <li>Use on 5 sites or unlimited</li>
-                  <li>Priority support</li>
-                  <li>White-label option on unlimited</li>
+
+              <article class="pricing-card">
+                <div class="pricing-header">
+                  <span class="pricing-tier">5 Sites</span>
+                  <div class="pricing-price">
+                    <span class="price-amount">$59</span>
+                    <span class="price-period">one-time</span>
+                  </div>
+                  <p class="pricing-description">Best value for freelancers managing multiple sites.</p>
+                </div>
+                <ul class="pricing-features">
+                  <li>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Use on 5 websites
+                  </li>
+                  <li>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Everything in Single Site
+                  </li>
+                  <li>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Save $86 vs separate licenses
+                  </li>
+                  <li>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Priority support
+                  </li>
                 </ul>
+                <a class="button secondary large" href="mailto:sales@webadish.com?subject=AutoSheets Pro - 5 Sites">
+                  Get Started
+                </a>
               </article>
+
+              <article class="pricing-card">
+                <div class="pricing-header">
+                  <span class="pricing-tier">Unlimited</span>
+                  <div class="pricing-price">
+                    <span class="price-amount">$119</span>
+                    <span class="price-period">one-time</span>
+                  </div>
+                  <p class="pricing-description">Agency license for unlimited client websites.</p>
+                </div>
+                <ul class="pricing-features">
+                  <li>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Unlimited websites
+                  </li>
+                  <li>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Everything in Single Site
+                  </li>
+                  <li>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    White-label option
+                  </li>
+                  <li>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Priority support
+                  </li>
+                </ul>
+                <a class="button secondary large" href="mailto:sales@webadish.com?subject=AutoSheets Pro - Unlimited">
+                  Get Started
+                </a>
+              </article>
+            </div>
+
+            <p class="pricing-note">
+              Payments handled via Razorpay (India) or Stripe (International). 30-day money-back guarantee.
+            </p>
+          </div>
+        </section>
+
+        <!-- Comparison Table -->
+        <section class="section section-alt">
+          <div class="container">
+            <div class="section-header centered">
+              <span class="eyebrow">Compare Plans</span>
+              <h2 class="section-title">What&apos;s included in each plan</h2>
+            </div>
+            <div class="comparison-table">
+              <div class="table-row table-head">
+                <div>Feature</div>
+                <div>Free</div>
+                <div>Pro</div>
+              </div>
+              <div class="table-row">
+                <div>Contact Form 7 integration</div>
+                <div>Yes</div>
+                <div>Yes</div>
+              </div>
+              <div class="table-row">
+                <div>Unlimited submissions</div>
+                <div>Yes</div>
+                <div>Yes</div>
+              </div>
+              <div class="table-row">
+                <div>WPForms, Gravity, Ninja, Elementor, Fluent</div>
+                <div>-</div>
+                <div>Yes</div>
+              </div>
+              <div class="table-row">
+                <div>Multiple spreadsheets</div>
+                <div>-</div>
+                <div>Yes</div>
+              </div>
+              <div class="table-row">
+                <div>Custom field mapping</div>
+                <div>-</div>
+                <div>Yes</div>
+              </div>
+              <div class="table-row">
+                <div>Conditional sync rules</div>
+                <div>-</div>
+                <div>Yes</div>
+              </div>
+              <div class="table-row">
+                <div>Priority support</div>
+                <div>Forums</div>
+                <div>24hr email</div>
+              </div>
             </div>
           </div>
         </section>
       </main>
 
       <footer class="site-footer">
-        <div class="container footer-grid">
-          <div><p class="footer-copy">WebAdish Products pricing framework for plugin launches and future add-ons.</p></div>
-          <div class="footer-links">
-            <a href="../docs/">Docs</a>
-            <a href="../support/">Support</a>
-            <a href="../privacy-policy/">Privacy</a>
-            <a href="../terms/">Terms</a>
+        <div class="container">
+          <div class="footer-grid">
+            <div class="footer-brand-section">
+              <a class="brand footer-brand" href="../">
+                <img class="brand-mark" src="../assets/webadish-logo.webp" alt="WebAdish" />
+                <span class="brand-label">Products</span>
+              </a>
+              <p class="footer-description">
+                WebAdish Products pricing framework for plugin launches and future add-ons.
+              </p>
+            </div>
+            <nav class="footer-nav">
+              <div class="footer-column">
+                <strong>Product</strong>
+                <a href="../products/autosheets-google-sheets/">AutoSheets</a>
+                <a href="../pricing/">Pricing</a>
+                <a href="../docs/">Documentation</a>
+              </div>
+              <div class="footer-column">
+                <strong>Support</strong>
+                <a href="../support/">Get Help</a>
+                <a href="../docs/">Guides</a>
+                <a href="https://webadish.com">Main Site</a>
+              </div>
+              <div class="footer-column">
+                <strong>Legal</strong>
+                <a href="../privacy-policy/">Privacy</a>
+                <a href="../terms/">Terms</a>
+                <a href="../refund-policy/">Refunds</a>
+              </div>
+            </nav>
+          </div>
+          <div class="footer-bottom">
+            <p>&copy; 2026 WebAdish. All rights reserved.</p>
           </div>
         </div>
       </footer>

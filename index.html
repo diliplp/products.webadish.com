@@ -8,6 +8,9 @@
       name="description"
       content="Products by WebAdish, starting with the AutoSheets plugin for Google Sheets and designed to expand into plugins, tools, SaaS, and productized solutions."
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/styles.css" />
     <script defer src="assets/site.js"></script>
   </head>
@@ -15,225 +18,361 @@
     <div class="site-shell">
       <header class="site-header">
         <div class="container nav-row">
-            <a class="brand" href="./">
+          <a class="brand" href="./">
             <img class="brand-mark" src="assets/webadish-logo.webp" alt="WebAdish" />
             <span class="brand-label">Products</span>
           </a>
           <button class="nav-toggle" type="button" aria-label="Toggle navigation" data-nav-toggle>
             <span></span>
             <span></span>
+            <span></span>
           </button>
           <nav class="site-nav" data-nav>
-            <a href="./" data-nav-link>Home</a>
+            <a href="./" data-nav-link class="is-active">Home</a>
             <a href="#plugins" data-nav-link>Plugins</a>
             <a href="pricing/" data-nav-link>Pricing</a>
             <a href="docs/" data-nav-link>Docs</a>
             <a href="support/" data-nav-link>Support</a>
-            <a href="products/autosheets-google-sheets/" data-nav-link>AutoSheets</a>
-            <a href="https://webadish.com" class="button ghost">Main Site</a>
+            <a href="products/autosheets-google-sheets/" class="button primary">AutoSheets</a>
           </nav>
         </div>
       </header>
 
       <main>
-        <section class="hero hero-home">
-          <div class="container hero-grid">
-            <div class="hero-copy">
-              <span class="eyebrow">WebAdish Products</span>
-              <h1>Products built for teams that want practical automation, cleaner operations, and less recurring overhead.</h1>
-              <p class="lead">
-                WebAdish Products is the product layer of the WebAdish brand. We launch focused tools, plugins, and
-                productized solutions that solve real operational pain points, then support them with premium
-                documentation, direct support, and practical upgrade paths.
-              </p>
-              <div class="hero-actions">
-                <a class="button primary" href="products/autosheets-google-sheets/">View AutoSheets</a>
-                <a class="button secondary" href="pricing/">See Pro Pricing</a>
+        <!-- Hero Section -->
+        <section class="hero">
+          <div class="container">
+            <div class="hero-grid">
+              <div class="hero-content">
+                <span class="eyebrow">WebAdish Products</span>
+                <h1 class="hero-title">Sync your WordPress forms to Google Sheets</h1>
+                <p class="hero-description">
+                  Practical automation for teams that want cleaner operations and less recurring overhead. 
+                  Start free, upgrade when you need more.
+                </p>
+                <div class="hero-actions">
+                  <a class="button primary large" href="products/autosheets-google-sheets/">
+                    Get AutoSheets Free
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3.33337 8H12.6667M12.6667 8L8.00004 3.33334M12.6667 8L8.00004 12.6667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                  <a class="button secondary large" href="pricing/">View Pricing</a>
+                </div>
               </div>
-              <div class="hero-metrics">
-                <div>
-                  <strong>1</strong>
-                  <span>Launch-ready product with a WordPress.org free-to-Pro path</span>
-                </div>
-                <div>
-                  <strong>6+</strong>
-                  <span>Form builders supported in the first plugin product</span>
-                </div>
-                <div>
-                  <strong>20+</strong>
-                  <span>Years of WordPress delivery context</span>
+              <div class="hero-visual">
+                <div class="product-preview">
+                  <div class="preview-header">
+                    <div class="preview-dots">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                    <span class="preview-title">AutoSheets Dashboard</span>
+                  </div>
+                  <div class="preview-body">
+                    <div class="preview-card accent">
+                      <div class="preview-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <strong>Form Synced</strong>
+                        <span>Contact Form 7 → Google Sheets</span>
+                      </div>
+                    </div>
+                    <div class="preview-row">
+                      <div class="preview-stat">
+                        <span class="stat-value">247</span>
+                        <span class="stat-label">Submissions</span>
+                      </div>
+                      <div class="preview-stat">
+                        <span class="stat-value">6</span>
+                        <span class="stat-label">Form Builders</span>
+                      </div>
+                    </div>
+                    <div class="preview-list">
+                      <div class="preview-list-item">
+                        <span class="status-dot success"></span>
+                        <span>WPForms connected</span>
+                      </div>
+                      <div class="preview-list-item">
+                        <span class="status-dot success"></span>
+                        <span>Gravity Forms connected</span>
+                      </div>
+                      <div class="preview-list-item">
+                        <span class="status-dot success"></span>
+                        <span>Elementor Forms ready</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-
-            <aside class="hero-panel">
-              <div class="status-card">
-                <p class="panel-label">What You Get</p>
-                <h2>A cleaner product experience for WordPress users who want practical automation.</h2>
-                <ul class="check-list">
-                  <li>WordPress.org discovery for the free plugin</li>
-                  <li>Category-led product experience on products.webadish.com</li>
-                  <li>Docs, support, pricing, and trust in one system</li>
-                  <li>Built by the WebAdish team behind premium WordPress delivery</li>
-                </ul>
-              </div>
-            </aside>
           </div>
         </section>
 
-        <section class="section">
+        <!-- Stats Section -->
+        <section class="stats-section">
           <div class="container">
-            <div class="section-heading">
+            <div class="stats-grid">
+              <div class="stat-item">
+                <span class="stat-number">1</span>
+                <span class="stat-text">Launch-ready product with a WordPress.org free-to-Pro path</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">6+</span>
+                <span class="stat-text">Form builders supported in the first plugin product</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">20+</span>
+                <span class="stat-text">Years of WordPress delivery context</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Why Section -->
+        <section class="section" id="why">
+          <div class="container">
+            <div class="section-header">
               <span class="eyebrow">Why This Site Exists</span>
-              <h2>Keep the premium services brand clean while still growing a broader product business.</h2>
-              <p>
-                webadish.com should remain your premium service brand. This subdomain becomes the product layer where
-                plugin buyers, future tool users, and support traffic can live without reshaping your services
-                positioning.
+              <h2 class="section-title">Keep the premium services brand clean while growing a product business</h2>
+              <p class="section-description">
+                webadish.com remains your premium service brand. This subdomain is the product layer where plugin buyers, 
+                future tool users, and support traffic can live without reshaping your services positioning.
               </p>
             </div>
-            <div class="three-grid">
-              <article class="panel">
+            <div class="features-grid">
+              <article class="feature-card">
+                <div class="feature-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
                 <h3>Discovery</h3>
                 <p>Free plugins get discovered on WordPress.org, then send serious users here for docs, support, and upgrades.</p>
               </article>
-              <article class="panel">
+              <article class="feature-card">
+                <div class="feature-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 8V16M12 11V16M8 14V16M6 20H18C19.1046 20 20 19.1046 20 18V6C20 4.89543 19.1046 4 18 4H6C4.89543 4 4 4.89543 4 6V18C4 19.1046 4.89543 20 6 20Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
                 <h3>Conversion</h3>
-                <p>Product pages can sell plugins, tools, and other digital offers without diluting the premium consulting brand.</p>
+                <p>Product pages sell plugins, tools, and digital offers without diluting the premium consulting brand.</p>
               </article>
-              <article class="panel">
+              <article class="feature-card">
+                <div class="feature-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.364 5.63604L16.95 7.05025M7.05025 16.9497L5.63604 18.364M12 3V5M12 19V21M3 12H5M19 12H21M7.05025 7.05025L5.63604 5.63604M18.364 18.364L16.95 16.9497" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
                 <h3>Support</h3>
-                <p>Customers get a more focused place for docs, support, and upgrade decisions without being mixed into the main service site.</p>
+                <p>Customers get a focused place for docs, support, and upgrade decisions without mixing into the main service site.</p>
               </article>
             </div>
           </div>
         </section>
 
+        <!-- Plugins Section -->
         <section class="section section-alt" id="plugins">
           <div class="container">
-            <div class="section-heading">
+            <div class="section-header">
               <span class="eyebrow">Plugins</span>
-              <h2>AutoSheets is the first plugin in the product catalog.</h2>
-              <p>The first launch is built around direct WordPress form sync to Google Sheets, with future products able to sit alongside it cleanly.</p>
+              <h2 class="section-title">AutoSheets is the first plugin in the catalog</h2>
+              <p class="section-description">
+                Direct WordPress form sync to Google Sheets, with future products able to sit alongside it cleanly.
+              </p>
             </div>
-            <div class="card-grid">
+            <div class="products-grid">
               <article class="product-card featured">
-                <p class="card-tag">Plugin</p>
+                <span class="product-tag">Featured Plugin</span>
                 <h3>WebAdish AutoSheets for Google Sheets</h3>
                 <p>
-                  Sync Contact Form 7, WPForms, Gravity Forms, Formidable, Ninja Forms, Elementor Forms, and more to
-                  Google Sheets, with a one-time Pro upgrade for advanced workflows.
+                  Sync Contact Form 7, WPForms, Gravity Forms, Formidable, Ninja Forms, Elementor Forms, and more 
+                  to Google Sheets with a one-time Pro upgrade for advanced workflows.
                 </p>
-                <div class="card-actions">
-                  <a class="button primary" href="products/autosheets-google-sheets/">Open Product Page</a>
-                </div>
+                <a class="button primary" href="products/autosheets-google-sheets/">
+                  Open Product Page
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.33337 8H12.6667M12.6667 8L8.00004 3.33334M12.6667 8L8.00004 12.6667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
               </article>
-
               <article class="product-card">
-                <p class="card-tag">Plugin Tier</p>
+                <span class="product-tag">Free Tier</span>
                 <h3>Contact Form 7 to Sheets</h3>
                 <p>Start free with Contact Form 7, then upgrade to Pro when you need more form builders and more control.</p>
               </article>
-
               <article class="product-card">
-                <p class="card-tag">Plugin Upgrade</p>
+                <span class="product-tag">Pro Upgrade</span>
                 <h3>Multi-Form Support</h3>
                 <p>Unlock WPForms, Gravity Forms, Formidable, Ninja Forms, Elementor Forms, and Fluent Forms in one Pro plugin.</p>
               </article>
-
               <article class="product-card">
-                <p class="card-tag">Plugin License</p>
-                <h3>5-Site and Unlimited Licensing</h3>
+                <span class="product-tag">Licensing</span>
+                <h3>5-Site and Unlimited</h3>
                 <p>Give freelancers and agencies a straightforward commercial path without monthly connector fees.</p>
               </article>
             </div>
           </div>
         </section>
 
+        <!-- Flow Section -->
         <section class="section">
-          <div class="container split-layout">
-            <div>
-              <span class="eyebrow">Product Flow</span>
-              <h2>How the first plugin product should convert.</h2>
-              <ol class="flow-list">
-                <li>WordPress.org introduces the free plugin and establishes trust.</li>
-                <li>This site shows the product story, screenshots, support depth, and pro features.</li>
-                <li>Free users upgrade to Pro for commercial use, deeper checks, support, or reporting.</li>
-                <li>High-value users can still move upward into WebAdish service retainers where relevant.</li>
-              </ol>
-            </div>
-            <div class="panel stack">
-              <div>
-                <p class="panel-label">Recommended domain split</p>
-                <strong class="big-stat">webadish.com</strong>
-                <p>Premium services, case studies, retainers, recovery, trust.</p>
+          <div class="container">
+            <div class="flow-layout">
+              <div class="flow-content">
+                <span class="eyebrow">Product Flow</span>
+                <h2 class="section-title">How the first plugin converts</h2>
+                <ol class="flow-steps">
+                  <li>
+                    <span class="step-number">1</span>
+                    <div>
+                      <strong>WordPress.org Discovery</strong>
+                      <p>Free plugin establishes trust and introduces the product.</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="step-number">2</span>
+                    <div>
+                      <strong>Product Story</strong>
+                      <p>This site shows screenshots, support depth, and pro features.</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="step-number">3</span>
+                    <div>
+                      <strong>Pro Upgrade</strong>
+                      <p>Free users upgrade for commercial use, deeper checks, or support.</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="step-number">4</span>
+                    <div>
+                      <strong>Service Path</strong>
+                      <p>High-value users can move into WebAdish service retainers.</p>
+                    </div>
+                  </li>
+                </ol>
               </div>
-              <div>
-                <strong class="big-stat">products.webadish.com</strong>
-                <p>Plugin pages, docs, support, pricing, and future product categories.</p>
+              <div class="flow-sidebar">
+                <div class="domain-card">
+                  <span class="domain-label">Premium Services</span>
+                  <strong class="domain-url">webadish.com</strong>
+                  <p>Case studies, retainers, recovery, and premium trust.</p>
+                </div>
+                <div class="domain-card active">
+                  <span class="domain-label">Product Layer</span>
+                  <strong class="domain-url">products.webadish.com</strong>
+                  <p>Plugin pages, docs, support, pricing, and future products.</p>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
+        <!-- Trust Section -->
         <section class="section section-alt">
           <div class="container">
-            <div class="section-heading">
+            <div class="section-header centered">
               <span class="eyebrow">Trust Layer</span>
-              <h2>Product brand, backed by delivery experience.</h2>
+              <h2 class="section-title">Product brand, backed by delivery experience</h2>
             </div>
             <div class="trust-grid">
-              <div class="panel">
+              <div class="trust-card">
+                <div class="trust-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 12L11 14L15 10M20.6179 5.98434C20.4132 5.99472 20.2072 5.99997 20 5.99997C16.9265 5.99997 14.123 4.84453 11.9999 2.94434C9.87691 4.84446 7.07339 5.99985 4 5.99985C3.79277 5.99985 3.58678 5.9946 3.38213 5.98422C3.1327 6.94783 3 7.95842 3 9.00001C3 14.5915 6.82432 19.2898 12 20.622C17.1757 19.2898 21 14.5915 21 9.00001C21 7.95847 20.8673 6.94791 20.6179 5.98434Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
                 <strong>Built by WebAdish</strong>
                 <p>Products come from the same team working on premium WordPress protection, recovery, and operations work.</p>
               </div>
-              <div class="panel">
-                <strong>Commercially minded</strong>
-                <p>Products are shaped around real client pain points, not vanity feature lists or abandoned side projects.</p>
+              <div class="trust-card">
+                <div class="trust-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 10V3L4 14H11V21L20 10H13Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <strong>Commercially Minded</strong>
+                <p>Products shaped around real client pain points, not vanity feature lists or abandoned side projects.</p>
               </div>
-              <div class="panel">
-                <strong>Ready for support</strong>
+              <div class="trust-card">
+                <div class="trust-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 12H8.01M12 12H12.01M16 12H16.01M21 12C21 16.4183 16.9706 20 12 20C10.4607 20 9.01172 19.6565 7.74467 19.0511L3 20L4.39499 16.28C3.51156 15.0423 3 13.5743 3 12C3 7.58172 7.02944 4 12 4C16.9706 4 21 7.58172 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <strong>Ready for Support</strong>
                 <p>Docs, support, legal pages, and upgrade paths give buyers a cleaner, more trustworthy plugin experience.</p>
               </div>
             </div>
           </div>
         </section>
 
+        <!-- CTA Section -->
         <section class="section cta-section">
-          <div class="container cta-panel">
-            <div>
-              <span class="eyebrow">Get Started</span>
-              <h2>Explore AutoSheets, compare pricing, and upgrade when your workflow needs more.</h2>
-              <p>
-                Start with AutoSheets, then move into docs, support, or pricing depending on what you need.
-              </p>
-            </div>
-            <div class="cta-actions">
-              <a class="button primary" href="products/autosheets-google-sheets/">Open AutoSheets</a>
-              <a class="button secondary" href="docs/">Browse Docs</a>
+          <div class="container">
+            <div class="cta-card">
+              <div class="cta-content">
+                <span class="eyebrow">Get Started</span>
+                <h2 class="cta-title">Explore AutoSheets, compare pricing, and upgrade when your workflow needs more</h2>
+                <p class="cta-description">
+                  Start with AutoSheets, then move into docs, support, or pricing depending on what you need.
+                </p>
+              </div>
+              <div class="cta-actions">
+                <a class="button primary large" href="products/autosheets-google-sheets/">
+                  Open AutoSheets
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.33337 8H12.6667M12.6667 8L8.00004 3.33334M12.6667 8L8.00004 12.6667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+                <a class="button secondary large" href="docs/">Browse Docs</a>
+              </div>
             </div>
           </div>
         </section>
       </main>
 
       <footer class="site-footer">
-        <div class="container footer-grid">
-          <div>
-            <a class="brand footer-brand" href="./">
-              <img class="brand-mark" src="assets/webadish-logo.webp" alt="WebAdish" />
-              <span class="brand-label">Products</span>
-            </a>
-            <p class="footer-copy">
-              Built for serious WordPress operations. Practical products by the WebAdish team, starting with WordPress plugins.
-            </p>
+        <div class="container">
+          <div class="footer-grid">
+            <div class="footer-brand-section">
+              <a class="brand footer-brand" href="./">
+                <img class="brand-mark" src="assets/webadish-logo.webp" alt="WebAdish" />
+                <span class="brand-label">Products</span>
+              </a>
+              <p class="footer-description">
+                Built for serious WordPress operations. Practical products by the WebAdish team, starting with WordPress plugins.
+              </p>
+            </div>
+            <nav class="footer-nav">
+              <div class="footer-column">
+                <strong>Product</strong>
+                <a href="products/autosheets-google-sheets/">AutoSheets</a>
+                <a href="pricing/">Pricing</a>
+                <a href="docs/">Documentation</a>
+              </div>
+              <div class="footer-column">
+                <strong>Support</strong>
+                <a href="support/">Get Help</a>
+                <a href="docs/">Guides</a>
+                <a href="https://webadish.com">Main Site</a>
+              </div>
+              <div class="footer-column">
+                <strong>Legal</strong>
+                <a href="privacy-policy/">Privacy</a>
+                <a href="terms/">Terms</a>
+                <a href="refund-policy/">Refunds</a>
+              </div>
+            </nav>
           </div>
-          <div class="footer-links">
-            <a href="pricing/">Pricing</a>
-            <a href="docs/">Docs</a>
-            <a href="support/">Support</a>
-            <a href="privacy-policy/">Privacy</a>
-            <a href="terms/">Terms</a>
-            <a href="refund-policy/">Refunds</a>
+          <div class="footer-bottom">
+            <p>&copy; 2026 WebAdish. All rights reserved.</p>
           </div>
         </div>
       </footer>
