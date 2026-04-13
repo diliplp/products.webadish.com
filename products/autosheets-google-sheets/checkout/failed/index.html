@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Not Completed | AutoSheets Pro</title>
+    <meta name="description" content="Your AutoSheets Pro payment was not completed. Retry checkout or contact support." />
+    <link rel="stylesheet" href="../../../../assets/styles.css" />
+    <script defer src="../../../../assets/site.js"></script>
+  </head>
+  <body data-page="autosheets-checkout-failed">
+    <div class="site-shell">
+      <header class="site-header">
+        <div class="container nav-row">
+          <a class="brand" href="../../../../">
+            <img class="brand-mark" src="../../../../assets/webadish-logo.webp" alt="WebAdish" />
+            <span class="brand-label">Products</span>
+          </a>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero hero-simple">
+          <div class="container narrow">
+            <span class="eyebrow">Payment Incomplete</span>
+            <h1>Your AutoSheets Pro payment was not completed.</h1>
+            <p class="lead">That can happen if checkout was cancelled, the bank/UPI app declined the payment, or PayU could not confirm the transaction. You can retry safely.</p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container split-layout">
+            <article class="panel stack">
+              <p class="panel-label">Order Reference</p>
+              <h2 data-order-ref>Unavailable</h2>
+              <p class="small-note" data-failure-status>Please retry checkout or contact support if money was debited but access has not been issued.</p>
+            </article>
+
+            <article class="panel stack">
+              <p class="panel-label">Try Again</p>
+              <div class="card-actions">
+                <a class="button primary" href="../../pricing/">Back to Pricing</a>
+                <a class="button secondary" href="../../support/">Contact Support</a>
+              </div>
+              <div class="callout">
+                <strong>Important:</strong> If payment was debited but this page still appeared, email support@webadish.com with your transaction reference so we can verify it manually.
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

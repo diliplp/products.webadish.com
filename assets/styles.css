@@ -811,6 +811,73 @@ img {
   font-size: 0.92rem;
 }
 
+.checkout-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.field span,
+.agreement {
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  padding: 0.95rem 1rem;
+  font: inherit;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  outline: 2px solid rgba(47, 125, 246, 0.44);
+  border-color: rgba(47, 125, 246, 0.58);
+}
+
+.agreement {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  line-height: 1.55;
+}
+
+.agreement input {
+  margin-top: 0.22rem;
+}
+
+.agreement a {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+.checkout-summary {
+  align-self: start;
+}
+
+.honeypot-field {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 @media (max-width: 980px) {
   .hero-grid,
   .split-layout,

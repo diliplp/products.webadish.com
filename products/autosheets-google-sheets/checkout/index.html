@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout | AutoSheets Pro | WebAdish Products</title>
+    <meta
+      name="description"
+      content="Secure checkout for WebAdish AutoSheets for Google Sheets. Buy a single-site, 5-site, or unlimited Pro license via PayU hosted checkout."
+    />
+    <link rel="stylesheet" href="../../../assets/styles.css" />
+    <script defer src="../../../assets/site.js"></script>
+  </head>
+  <body data-page="autosheets-checkout">
+    <div class="site-shell">
+      <header class="site-header">
+        <div class="container nav-row">
+          <a class="brand" href="../../../">
+            <img class="brand-mark" src="../../../assets/webadish-logo.webp" alt="WebAdish" />
+            <span class="brand-label">Products</span>
+          </a>
+          <button class="nav-toggle" type="button" aria-label="Toggle navigation" data-nav-toggle><span></span><span></span></button>
+          <nav class="site-nav" data-nav>
+            <a href="../../../" data-nav-link>Home</a>
+            <a href="../" data-nav-link>AutoSheets</a>
+            <a href="../pricing/" data-nav-link>Pricing</a>
+            <a href="../docs/" data-nav-link>Docs</a>
+            <a href="../support/" data-nav-link>Support</a>
+            <a href="https://webadish.com" class="button ghost">Main Site</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero hero-simple">
+          <div class="container narrow">
+            <span class="eyebrow">Secure Checkout</span>
+            <h1>Buy AutoSheets Pro with a one-time payment.</h1>
+            <p class="lead">You will complete payment on PayU hosted checkout. After successful payment, the WebAdish team will issue your Pro download and license details by email.</p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container split-layout">
+            <article class="panel stack checkout-summary" data-checkout-summary>
+              <p class="panel-label">Selected Plan</p>
+              <h2 data-plan-title>AutoSheets Pro - Single Site</h2>
+              <p class="price-pill" data-plan-price>₹2,499 one-time</p>
+              <ul class="mini-list" data-plan-benefits>
+                <li>Use on 1 website</li>
+                <li>All Pro integrations</li>
+                <li>Priority support</li>
+              </ul>
+              <div class="callout">
+                <strong>Fulfilment note:</strong> This first checkout flow captures payment online and then sends your order to the WebAdish team for manual license fulfilment.
+              </div>
+            </article>
+
+            <article class="panel stack">
+              <p class="panel-label">Buyer Details</p>
+              <form class="checkout-form" data-checkout-form>
+                <input type="hidden" name="plan" value="single-site" data-plan-input />
+                <input type="hidden" name="form_started_at" value="" data-started-at />
+
+                <label class="field">
+                  <span>Full name</span>
+                  <input type="text" name="name" required minlength="2" maxlength="80" autocomplete="name" placeholder="Your full name" />
+                </label>
+
+                <label class="field">
+                  <span>Email address</span>
+                  <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" />
+                </label>
+
+                <label class="field">
+                  <span>Phone number</span>
+                  <input type="tel" name="phone" autocomplete="tel" placeholder="+91 99999 99999" />
+                </label>
+
+                <label class="field">
+                  <span>Website URL</span>
+                  <input type="url" name="website" placeholder="https://example.com" />
+                </label>
+
+                <label class="field">
+                  <span>Company / agency</span>
+                  <input type="text" name="company" placeholder="Optional" />
+                </label>
+
+                <label class="field">
+                  <span>Notes for fulfilment</span>
+                  <textarea name="notes" rows="4" placeholder="Optional: tell us if this is for a client site, agency rollout, or anything we should know."></textarea>
+                </label>
+
+                <div class="honeypot-field" aria-hidden="true">
+                  <label>
+                    <span>Fax number</span>
+                    <input type="text" name="fax_number" tabindex="-1" autocomplete="off" />
+                  </label>
+                </div>
+
+                <label class="agreement">
+                  <input type="checkbox" name="terms" required />
+                  <span>I agree to the <a href="../../../terms/">terms</a> and <a href="../../../refund-policy/">refund policy</a>.</span>
+                </label>
+
+                <button class="button primary" type="submit" data-submit-button>Continue to PayU</button>
+                <p class="small-note" data-checkout-feedback>PayU hosted checkout supports cards, UPI, wallets, and net banking based on your merchant setup.</p>
+              </form>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-grid">
+          <div>
+            <a class="brand footer-brand" href="../../../">
+              <img class="brand-mark" src="../../../assets/webadish-logo.webp" alt="WebAdish" />
+              <span class="brand-label">Products</span>
+            </a>
+            <p class="footer-copy">Secure hosted checkout for AutoSheets Pro.</p>
+          </div>
+          <div class="footer-links">
+            <a href="../pricing/">Pricing</a>
+            <a href="../docs/">Docs</a>
+            <a href="../support/">Support</a>
+            <a href="../../../privacy-policy/">Privacy</a>
+            <a href="../../../refund-policy/">Refunds</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
