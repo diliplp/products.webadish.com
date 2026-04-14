@@ -62,48 +62,51 @@ module.exports = async function handler(req, res) {
     const baseUrl = getBaseUrl(req);
 
     const payload = {
+      accountId,
       txnId,
-      intent: "sale",
-      paymentData: {
-        paymentChargeSpecification: {
-          price: selectedPlan.amount,
-          currency: selectedPlan.currency,
-        },
-      },
-      productInfo: {
-        paymentParts: [
+      referenceId: txnId,
+      order: {
+        productInfo: selectedPlan.title,
+        orderedItem: [
           {
-            name: selectedPlan.title,
-            value: selectedPlan.amount,
-            merchantAccessKey: key,
-            commission: 0,
+            itemId: selectedPlan.id,
+            description: `${selectedPlan.title} (${selectedPlan.sites})`,
+            quantity: 1,
           },
         ],
+        userDefinedFields: {
+          udf1: selectedPlan.id,
+          udf2: website.trim().slice(0, 200),
+          udf3: company.trim().slice(0, 120),
+          udf4: notes.trim().slice(0, 250),
+          udf5: "products.webadish.com",
+        },
+        paymentChargeSpecification: {
+          price: selectedPlan.amount,
+        },
+      },
+      billingDetails: {
+        firstName: name.trim(),
+        phone: phone.trim(),
+        email: email.trim(),
+        address: {
+          address1: company.trim().slice(0, 120) || "Not provided",
+          city: "Vadodara",
+          state: "Gujarat",
+          country: "India",
+          zipCode: "390021",
+        },
       },
       additionalInfo: {
+        txnFlow: "nonseamless",
         udf1: selectedPlan.id,
-        udf2: website.trim().slice(0, 200),
-        udf3: company.trim().slice(0, 120),
-        udf4: notes.trim().slice(0, 250),
-        udf5: "products.webadish.com",
-        txnS2sFlow: 4,
       },
-      merchant: {
+      callBackActions: {
         successAction: `${baseUrl}/api/payu/complete?status=success&txnid=${encodeURIComponent(txnId)}&plan=${encodeURIComponent(selectedPlan.id)}&buyer_email=${encodeURIComponent(email.trim())}&buyer_name=${encodeURIComponent(name.trim())}`,
         failureAction: `${baseUrl}/api/payu/complete?status=failure&txnid=${encodeURIComponent(txnId)}&plan=${encodeURIComponent(selectedPlan.id)}&buyer_email=${encodeURIComponent(email.trim())}&buyer_name=${encodeURIComponent(name.trim())}`,
         cancelAction: `${baseUrl}/api/payu/complete?status=cancelled&txnid=${encodeURIComponent(txnId)}&plan=${encodeURIComponent(selectedPlan.id)}&buyer_email=${encodeURIComponent(email.trim())}&buyer_name=${encodeURIComponent(name.trim())}`,
-        notificationUrl: `${baseUrl}/api/payu/complete?status=notify&txnid=${encodeURIComponent(txnId)}&plan=${encodeURIComponent(selectedPlan.id)}&buyer_email=${encodeURIComponent(email.trim())}&buyer_name=${encodeURIComponent(name.trim())}`,
+        codAction: `${baseUrl}/api/payu/complete?status=notify&txnid=${encodeURIComponent(txnId)}&plan=${encodeURIComponent(selectedPlan.id)}&buyer_email=${encodeURIComponent(email.trim())}&buyer_name=${encodeURIComponent(name.trim())}`,
       },
-      customer: {
-        firstName: name.trim(),
-        email: email.trim(),
-        phone: phone.trim(),
-      },
-      udfParameters: {
-        udf1: selectedPlan.id,
-      },
-      accountId,
-      referenceId: txnId,
     };
 
     const payloadString = JSON.stringify(payload);

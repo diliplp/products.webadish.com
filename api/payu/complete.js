@@ -114,17 +114,23 @@ module.exports = async function handler(req, res) {
         "Content-Type": "application/json",
         date,
         authorization: auth,
-        merchantid: key,
-        "txnid": txnId,
+        "merchantid": key,
+        "Info-Command": "verify_payment",
       },
       body: verifyPayload,
     });
 
     const verifyData = await verifyResponse.json().catch(() => null);
-    const result = verifyData?.result?.[txnId] || verifyData?.result?.[0] || null;
-    const transactionStatus = (result?.transactionStatus || result?.status || "").toString().toLowerCase();
-    const payuId = result?.mihpayid || result?.paymentId || "";
-    const plan = PLAN_CATALOG[result?.udf1 || planId] || fallbackPlan;
+    const result = verifyData?.result?.[txnId] || verifyData?.transaction_details?.[txnId] || null;
+    const transactionStatus = (
+      result?.transactionStatus ||
+      result?.status ||
+      result?.unmappedstatus ||
+      result?.unmappedStatus ||
+      ""
+    ).toString().toLowerCase();
+    const payuId = result?.mihpayid || result?.mihpayid?.toString?.() || result?.paymentId || "";
+    const plan = PLAN_CATALOG[result?.udf1 || result?.udf_1 || planId] || fallbackPlan;
     const paymentState = ["success", "captured", "settled"].includes(transactionStatus);
 
     if (verifyResponse.ok && paymentState) {
