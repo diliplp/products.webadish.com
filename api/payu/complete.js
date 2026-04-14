@@ -54,22 +54,38 @@ async function sendOrderEmails({ plan, txnId, payuId, buyerEmail, buyerName, tra
   const safeTxnId = escapeHtml(txnId);
   const safePayuId = escapeHtml(String(payuId || ""));
   const safeStatus = escapeHtml(transactionStatus);
+  const hasPayuId = Boolean(String(payuId || "").trim());
+  const orderDetailsHtml = `
+      <p style="margin:0 0 8px;"><strong>Order reference:</strong> ${safeTxnId}</p>
+      ${hasPayuId ? `<p style="margin:0;"><strong>PayU payment ID:</strong> ${safePayuId}</p>` : ""}
+  `;
+  const orderDetailsText = `Order reference: ${txnId}${hasPayuId ? `\nPayU payment ID: ${payuId}` : ""}`;
 
   await sendResendEmail({
     from: `${fromName} <${fromEmail}>`,
     to: orderTo,
     replyTo: buyerEmail || undefined,
     subject: `New AutoSheets paid order: ${plan ? plan.title : "Unknown plan"} (${txnId})`,
-    text: `New AutoSheets order\n\nPlan: ${plan ? plan.title : "Unknown"}\nBuyer: ${buyerName}\nEmail: ${buyerEmail}\nTxn ID: ${txnId}\nPayU ID: ${payuId}\nStatus: ${transactionStatus}\n\nManual fulfilment is required.`,
+    text: `New AutoSheets order\n\nPlan: ${plan ? plan.title : "Unknown"}\nBuyer: ${buyerName}\nEmail: ${buyerEmail}\n${orderDetailsText}\nStatus: ${transactionStatus}\n\nPlease send the Pro plugin fulfilment and license details.`,
     html: `
-      <h2>New AutoSheets paid order</h2>
-      <p><strong>Plan:</strong> ${safePlan}</p>
-      <p><strong>Buyer:</strong> ${safeBuyerName}</p>
-      <p><strong>Email:</strong> ${safeBuyerEmail}</p>
-      <p><strong>Transaction ID:</strong> ${safeTxnId}</p>
-      <p><strong>PayU Payment ID:</strong> ${safePayuId}</p>
-      <p><strong>Status:</strong> ${safeStatus}</p>
-      <p><strong>Action:</strong> Send the Pro plugin fulfilment email and license details manually.</p>
+      <div style="margin:0;padding:24px;background:#f4f7fb;font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;color:#162033;">
+        <div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #dbe4f0;border-radius:18px;overflow:hidden;">
+          <div style="padding:22px 24px;background:#0c1728;color:#ffffff;">
+            <p style="margin:0;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#9fb5d1;">WebAdish Products</p>
+            <h1 style="margin:10px 0 0;font-size:24px;line-height:1.3;">New AutoSheets paid order</h1>
+          </div>
+          <div style="padding:24px;">
+            <p style="margin:0 0 12px;font-size:15px;line-height:1.7;"><strong>Plan:</strong> ${safePlan}</p>
+            <p style="margin:0 0 12px;font-size:15px;line-height:1.7;"><strong>Buyer:</strong> ${safeBuyerName}</p>
+            <p style="margin:0 0 12px;font-size:15px;line-height:1.7;"><strong>Email:</strong> ${safeBuyerEmail}</p>
+            <div style="margin:18px 0;padding:16px;border-radius:14px;background:#f6f9fd;border:1px solid #dbe4f0;">
+              ${orderDetailsHtml}
+            </div>
+            <p style="margin:0 0 12px;font-size:15px;line-height:1.7;"><strong>Status:</strong> ${safeStatus}</p>
+            <p style="margin:0;font-size:15px;line-height:1.7;"><strong>Next step:</strong> Send the Pro plugin fulfilment and license details.</p>
+          </div>
+        </div>
+      </div>
     `,
   });
 
@@ -80,7 +96,7 @@ async function sendOrderEmails({ plan, txnId, payuId, buyerEmail, buyerName, tra
     to: buyerEmail,
     replyTo: orderTo,
     subject: `Your AutoSheets Pro order is confirmed (${txnId})`,
-    text: `Hi ${buyerName || "there"},\n\nWe received your payment for ${plan ? plan.title : "AutoSheets Pro"}.\n\nOrder reference: ${txnId}\nPayU reference: ${payuId}\n\nThe WebAdish team will email your plugin fulfilment and license details shortly.\n\nIf you need help, reply to this email.\n\nRegards,\nWebAdish Products`,
+    text: `Hi ${buyerName || "there"},\n\nWe received your payment for ${plan ? plan.title : "AutoSheets Pro"}.\n\n${orderDetailsText}\n\nYour Pro plugin fulfilment details will be emailed shortly.\n\nIf you need help, reply to this email.\n\nRegards,\nWebAdish Products`,
     html: `
       <div style="margin:0;padding:24px;background:#f4f7fb;font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;color:#162033;">
         <div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #dbe4f0;border-radius:18px;overflow:hidden;">
@@ -92,10 +108,9 @@ async function sendOrderEmails({ plan, txnId, payuId, buyerEmail, buyerName, tra
             <p style="margin:0 0 14px;font-size:15px;line-height:1.7;">Hi ${safeBuyerName},</p>
             <p style="margin:0 0 14px;font-size:15px;line-height:1.7;">We received your payment for <strong>${safePlan}</strong>.</p>
             <div style="margin:18px 0;padding:16px;border-radius:14px;background:#f6f9fd;border:1px solid #dbe4f0;">
-              <p style="margin:0 0 8px;"><strong>Order reference:</strong> ${safeTxnId}</p>
-              <p style="margin:0;"><strong>PayU payment ID:</strong> ${safePayuId}</p>
+              ${orderDetailsHtml}
             </div>
-            <p style="margin:0 0 14px;font-size:15px;line-height:1.7;">The WebAdish team will email your Pro plugin fulfilment and license details shortly. This first version of checkout uses manual fulfilment after verified payment.</p>
+            <p style="margin:0 0 14px;font-size:15px;line-height:1.7;">Your Pro plugin fulfilment details will be emailed shortly.</p>
             <p style="margin:0;font-size:15px;line-height:1.7;">If you need help in the meantime, just reply to this email.</p>
           </div>
         </div>
