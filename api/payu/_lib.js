@@ -37,11 +37,15 @@ function getVerifyUrl() {
 }
 
 function getBaseUrl(req) {
+  if (process.env.PAYU_SITE_URL) {
+    return process.env.PAYU_SITE_URL.replace(/\/+$/, "");
+  }
+
   const forwardedProto = req.headers["x-forwarded-proto"];
   const proto = Array.isArray(forwardedProto) ? forwardedProto[0] : forwardedProto || "https";
   const forwardedHost = req.headers["x-forwarded-host"];
   const hostHeader = Array.isArray(forwardedHost) ? forwardedHost[0] : forwardedHost || req.headers.host;
-  return process.env.PAYU_SITE_URL || `${proto}://${hostHeader}`;
+  return `${proto}://${hostHeader}`.replace(/\/+$/, "");
 }
 
 function getDateHeader() {
