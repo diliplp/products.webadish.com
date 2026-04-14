@@ -123,7 +123,8 @@ const failureStatus = document.querySelector("[data-failure-status]");
 if (failureStatus) {
   const params = new URLSearchParams(window.location.search);
   const status = params.get("status");
+  const message = params.get("message");
   if (status) {
-    failureStatus.textContent = `Current status: ${status}. Please retry checkout or contact support if money was debited but access has not been issued.`;
+    failureStatus.textContent = `Current status: ${status}${message ? ` (${message})` : ""}. Please retry checkout or contact support if money was debited but access has not been issued.`;
   }
 }

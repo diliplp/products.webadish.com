@@ -129,9 +129,28 @@ module.exports = async function handler(req, res) {
       result?.unmappedStatus ||
       ""
     ).toString().toLowerCase();
+    const rawStatus = (result?.status || "").toString().toLowerCase();
+    const rawUnmappedStatus = (
+      result?.unmappedStatus ||
+      result?.unmappedstatus ||
+      ""
+    ).toString().toLowerCase();
+    const resultMessage = (result?.message || verifyData?.message || "").toString();
     const payuId = result?.mihpayid || result?.mihpayid?.toString?.() || result?.paymentId || "";
     const plan = PLAN_CATALOG[result?.udf1 || result?.udf_1 || planId] || fallbackPlan;
-    const paymentState = ["success", "captured", "settled"].includes(transactionStatus);
+    const paymentState =
+      rawStatus === "success" ||
+      ["success", "captured", "settled", "auth"].includes(rawUnmappedStatus) ||
+      ["success", "captured", "settled", "auth"].includes(transactionStatus);
+
+    console.log("PayU verify result", {
+      txnId,
+      rawStatus,
+      rawUnmappedStatus,
+      transactionStatus,
+      resultMessage,
+      payuId,
+    });
 
     if (verifyResponse.ok && paymentState) {
       if (status !== "notify") {
@@ -160,8 +179,11 @@ module.exports = async function handler(req, res) {
     const failureQuery = new URLSearchParams({
       txnid: txnId,
       plan: plan ? plan.id : planId,
-      status: status || transactionStatus || "failed",
+      status: rawStatus || rawUnmappedStatus || status || transactionStatus || "failed",
     });
+    if (resultMessage) {
+      failureQuery.set("message", resultMessage.slice(0, 120));
+    }
     return redirect(res, `${baseUrl}/products/autosheets-google-sheets/checkout/failed/?${failureQuery.toString()}`);
   } catch (error) {
     console.error("PayU verification failed", error);
