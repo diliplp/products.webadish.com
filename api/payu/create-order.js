@@ -123,14 +123,27 @@ module.exports = async function handler(req, res) {
       body: payloadString,
     });
 
-    const payuData = await payuResponse.json().catch(() => null);
+    const rawBody = await payuResponse.text();
+    let payuData = null;
+    try {
+      payuData = rawBody ? JSON.parse(rawBody) : null;
+    } catch {
+      payuData = null;
+    }
+
     if (!payuResponse.ok || !payuData?.result?.checkoutUrl) {
-      console.error("PayU create payment failed", payuData);
+      console.error("PayU create payment failed", {
+        status: payuResponse.status,
+        statusText: payuResponse.statusText,
+        body: rawBody,
+        parsed: payuData,
+      });
       const payuMessage =
         payuData?.message ||
         payuData?.msg ||
         payuData?.error ||
         payuData?.result?.message ||
+        rawBody ||
         "Unable to start payment right now.";
       return sendJson(res, 502, {
         error: payuMessage,
