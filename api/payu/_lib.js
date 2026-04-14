@@ -109,9 +109,47 @@ function looksLikeRealMessage(value) {
   return /^[\p{L}\p{N}\s.,'’"!?():/&+@#%-]*$/u.test(trimmed);
 }
 
+function escapeHtml(value = "") {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+async function sendResendEmail({ from, to, replyTo, subject, html, text }) {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) return { skipped: true };
+
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from,
+      to: Array.isArray(to) ? to : [to],
+      reply_to: replyTo ? [replyTo] : undefined,
+      subject,
+      html,
+      text,
+    }),
+  });
+
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(data?.message || "Failed to send email via Resend");
+  }
+
+  return data;
+}
+
 module.exports = {
   PLAN_CATALOG,
   buildAuthHeader,
+  escapeHtml,
   getBaseUrl,
   getDateHeader,
   getPaymentsUrl,
@@ -123,5 +161,6 @@ module.exports = {
   makeTxnId,
   readJsonBody,
   redirect,
+  sendResendEmail,
   sendJson,
 };

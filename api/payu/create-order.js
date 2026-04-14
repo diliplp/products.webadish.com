@@ -89,10 +89,10 @@ module.exports = async function handler(req, res) {
         txnS2sFlow: 4,
       },
       merchant: {
-        successAction: `${baseUrl}/api/payu/complete?status=success&txnid=${encodeURIComponent(txnId)}&plan=${encodeURIComponent(selectedPlan.id)}`,
-        failureAction: `${baseUrl}/api/payu/complete?status=failure&txnid=${encodeURIComponent(txnId)}&plan=${encodeURIComponent(selectedPlan.id)}`,
-        cancelAction: `${baseUrl}/api/payu/complete?status=cancelled&txnid=${encodeURIComponent(txnId)}&plan=${encodeURIComponent(selectedPlan.id)}`,
-        notificationUrl: `${baseUrl}/api/payu/complete?status=notify&txnid=${encodeURIComponent(txnId)}&plan=${encodeURIComponent(selectedPlan.id)}`,
+        successAction: `${baseUrl}/api/payu/complete?status=success&txnid=${encodeURIComponent(txnId)}&plan=${encodeURIComponent(selectedPlan.id)}&buyer_email=${encodeURIComponent(email.trim())}&buyer_name=${encodeURIComponent(name.trim())}`,
+        failureAction: `${baseUrl}/api/payu/complete?status=failure&txnid=${encodeURIComponent(txnId)}&plan=${encodeURIComponent(selectedPlan.id)}&buyer_email=${encodeURIComponent(email.trim())}&buyer_name=${encodeURIComponent(name.trim())}`,
+        cancelAction: `${baseUrl}/api/payu/complete?status=cancelled&txnid=${encodeURIComponent(txnId)}&plan=${encodeURIComponent(selectedPlan.id)}&buyer_email=${encodeURIComponent(email.trim())}&buyer_name=${encodeURIComponent(name.trim())}`,
+        notificationUrl: `${baseUrl}/api/payu/complete?status=notify&txnid=${encodeURIComponent(txnId)}&plan=${encodeURIComponent(selectedPlan.id)}&buyer_email=${encodeURIComponent(email.trim())}&buyer_name=${encodeURIComponent(name.trim())}`,
       },
       customer: {
         firstName: name.trim(),
