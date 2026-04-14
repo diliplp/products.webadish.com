@@ -40,13 +40,13 @@ module.exports = async function handler(req, res) {
     } = body || {};
 
     if (fax_number) {
-      return sendJson(res, 200, { success: true });
+      return sendJson(res, 400, { error: "Security validation failed. Please refresh and try again." });
     }
 
     const startedAt = typeof form_started_at === "number" ? form_started_at : Number(form_started_at);
     const age = Date.now() - startedAt;
     if (!startedAt || age < 3000 || age > 24 * 60 * 60 * 1000) {
-      return sendJson(res, 200, { success: true });
+      return sendJson(res, 400, { error: "Checkout session expired. Please refresh the page and try again." });
     }
 
     const selectedPlan = PLAN_CATALOG[plan];
@@ -55,7 +55,7 @@ module.exports = async function handler(req, res) {
     }
 
     if (!looksLikeRealName(name) || !isValidEmail(email) || !looksLikeRealMessage(notes)) {
-      return sendJson(res, 200, { success: true });
+      return sendJson(res, 400, { error: "Please review your details and try again." });
     }
 
     const txnId = makeTxnId(selectedPlan.id);

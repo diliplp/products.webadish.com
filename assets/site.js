@@ -85,8 +85,12 @@ if (checkoutForm) {
 
       const data = await response.json().catch(() => ({}));
 
-      if (!response.ok || !data.checkoutUrl) {
+      if (!response.ok) {
         throw new Error(data.error || "Unable to start payment right now.");
+      }
+
+      if (!data.checkoutUrl) {
+        throw new Error(data.error || "Payment gateway did not return a checkout link. Please refresh and try again.");
       }
 
       window.location.href = data.checkoutUrl;
