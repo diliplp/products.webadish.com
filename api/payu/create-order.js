@@ -19,9 +19,9 @@ module.exports = async function handler(req, res) {
 
   const key = process.env.PAYU_KEY;
   const merchantSecret = process.env.PAYU_MERCHANT_SECRET;
-  const accountId = process.env.PAYU_ACCOUNT_ID;
+  const accountId = process.env.PAYU_ACCOUNT_ID || key;
 
-  if (!key || !merchantSecret || !accountId) {
+  if (!key || !merchantSecret) {
     return sendJson(res, 500, { error: "PayU is not fully configured." });
   }
 
@@ -126,8 +126,14 @@ module.exports = async function handler(req, res) {
     const payuData = await payuResponse.json().catch(() => null);
     if (!payuResponse.ok || !payuData?.result?.checkoutUrl) {
       console.error("PayU create payment failed", payuData);
+      const payuMessage =
+        payuData?.message ||
+        payuData?.msg ||
+        payuData?.error ||
+        payuData?.result?.message ||
+        "Unable to start payment right now.";
       return sendJson(res, 502, {
-        error: "Unable to start payment right now.",
+        error: payuMessage,
         debug: process.env.NODE_ENV !== "production" ? payuData : undefined,
       });
     }
