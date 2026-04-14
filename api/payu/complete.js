@@ -17,6 +17,27 @@ function getBuyerName(req) {
   return (req.query.buyer_name || req.body?.firstname || req.body?.name || "there").toString();
 }
 
+function findTransactionResult(verifyData, txnId) {
+  if (!verifyData) return null;
+
+  if (verifyData?.result && !Array.isArray(verifyData.result) && verifyData.result[txnId]) {
+    return verifyData.result[txnId];
+  }
+
+  if (verifyData?.transaction_details && verifyData.transaction_details[txnId]) {
+    return verifyData.transaction_details[txnId];
+  }
+
+  if (Array.isArray(verifyData?.result)) {
+    return verifyData.result.find((entry) => {
+      const entryTxnId = (entry?.txnId || entry?.txnid || "").toString();
+      return entryTxnId === txnId;
+    }) || verifyData.result[0] || null;
+  }
+
+  return null;
+}
+
 async function sendOrderEmails({ plan, txnId, payuId, buyerEmail, buyerName, transactionStatus }) {
   const fromEmail = process.env.PRODUCTS_FROM_EMAIL;
   const fromName = process.env.PRODUCTS_FROM_NAME || "WebAdish Products";
@@ -121,7 +142,7 @@ module.exports = async function handler(req, res) {
     });
 
     const verifyData = await verifyResponse.json().catch(() => null);
-    const result = verifyData?.result?.[txnId] || verifyData?.transaction_details?.[txnId] || null;
+    const result = findTransactionResult(verifyData, txnId);
     const transactionStatus = (
       result?.transactionStatus ||
       result?.status ||
