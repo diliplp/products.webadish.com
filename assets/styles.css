@@ -31,9 +31,21 @@ body {
   margin: 0;
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   background:
-    radial-gradient(circle at top left, rgba(47, 125, 246, 0.22), transparent 24%),
-    radial-gradient(circle at 82% 15%, rgba(214, 26, 103, 0.16), transparent 20%),
-    radial-gradient(circle at bottom right, rgba(255, 138, 61, 0.14), transparent 24%),
+    radial-gradient(
+      circle at top left,
+      rgba(47, 125, 246, 0.22),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 82% 15%,
+      rgba(214, 26, 103, 0.16),
+      transparent 20%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(255, 138, 61, 0.14),
+      transparent 24%
+    ),
     linear-gradient(180deg, #060e18 0%, #0a1421 58%, #0d1828 100%);
   color: var(--text);
   min-height: 100vh;
@@ -323,7 +335,11 @@ img {
 }
 
 .section-alt {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
   border-top: 1px solid rgba(255, 255, 255, 0.04);
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
@@ -354,7 +370,9 @@ img {
 }
 
 .product-card.featured {
-  background: linear-gradient(180deg, rgba(47, 125, 246, 0.2), rgba(214, 26, 103, 0.1)), var(--surface-strong);
+  background:
+    linear-gradient(180deg, rgba(47, 125, 246, 0.2), rgba(214, 26, 103, 0.1)),
+    var(--surface-strong);
   transform: translateY(-6px);
 }
 
@@ -460,14 +478,22 @@ img {
   padding: 0.48rem 0.8rem;
   border-radius: 999px;
   margin: 0.7rem 0 0.9rem;
-  background: linear-gradient(135deg, rgba(47, 125, 246, 0.16), rgba(214, 26, 103, 0.16));
+  background: linear-gradient(
+    135deg,
+    rgba(47, 125, 246, 0.16),
+    rgba(214, 26, 103, 0.16)
+  );
   color: #fff;
   font-weight: 700;
 }
 
 .screenshot-panel .screen {
   border-radius: 22px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.01)
+  );
   border: 1px solid var(--line);
   overflow: hidden;
 }
@@ -483,7 +509,7 @@ img {
   width: 0.7rem;
   height: 0.7rem;
   border-radius: 999px;
-  background: rgba(255,255,255,0.18);
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .screen-body {
@@ -501,8 +527,12 @@ img {
 .screen-card {
   height: 92px;
   border-radius: 18px;
-  background: linear-gradient(135deg, rgba(47, 125, 246, 0.18), rgba(214, 26, 103, 0.1));
-  border: 1px solid rgba(255,255,255,0.08);
+  background: linear-gradient(
+    135deg,
+    rgba(47, 125, 246, 0.18),
+    rgba(214, 26, 103, 0.1)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .screen-card.large {
@@ -517,7 +547,7 @@ img {
   right: 16px;
   height: 10px;
   border-radius: 999px;
-  background: rgba(255,255,255,0.18);
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .screen-card.large::before {
@@ -684,7 +714,7 @@ img {
 }
 
 .doc-nav a:hover {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   color: var(--text);
 }
 
@@ -719,8 +749,8 @@ img {
   margin-top: 1rem;
   border-radius: 18px;
   padding: 1rem 1.1rem;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
   color: var(--muted);
 }
 
@@ -770,7 +800,11 @@ img {
   width: 120px;
   height: 120px;
   border-radius: 999px;
-  background: radial-gradient(circle, rgba(255,138,61,0.34) 0%, rgba(255,138,61,0) 72%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 138, 61, 0.34) 0%,
+    rgba(255, 138, 61, 0) 72%
+  );
   filter: blur(8px);
   pointer-events: none;
 }
@@ -797,7 +831,11 @@ img {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
@@ -945,4 +983,21 @@ img {
     grid-template-columns: 1.5fr 1fr 1fr;
     font-size: 0.92rem;
   }
+}
+button,
+.button {
+  cursor: pointer;
+}
+button[disabled],
+.button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
